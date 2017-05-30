@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Facelet Title</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:dataTable value="#{AdvertisingBean.allAdvertisings}" var="adv">
+            <h:column>
+                <f:facet name="header">Название</f:facet>
+                <div align="center">
+                    <h:outputText value="#{adv.name}"/>
+                </div>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Категория</f:facet>
+                <div align="center">
+                    <h:outputText value="#{adv.category}"/>
+                </div>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Цена</f:facet>
+                <div align="center">
+                    <h:outputText value="#{adv.price}"/>
+                </div>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Краткое описание</f:facet>
+                <div align="center">
+                    <h:outputText value="#{adv.briefDescription}"/>
+                </div>
+            </h:column>
+            <h:column>
+                <f:facet name="header"></f:facet>
+                <div align="center">
+                    <h:form>
+                        <h:commandButton action="#{AdvertisingBean.deleteAdvertisingById(adv.id)}" value="Удалить"/>
+                    </h:form>
+                </div>
+            </h:column>
+        </h:dataTable>
+        <h:commandButton action="addAdvertising" value="Добавить рекламу"/>
+    </h:form>
+</h:body>
+</html>
+
