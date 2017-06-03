@@ -26,15 +26,19 @@ public class Campaign implements Serializable {
     private String about;
     @NotNull
     private int price;
-    @NotNull
-    @Temporal(TemporalType.DATE)
-    private Date startdate;
-    @NotNull
-    @Temporal(TemporalType.DATE)
-    private Date enddate;
     @JoinColumn(name = "advertising_id")
     @ManyToMany(mappedBy = "campaigns", cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private List<Advertising> advertisings;
+
+    @PrePersist
+    void campaignPrePersist() {
+        System.out.println("Производится добавление рекламы " + name);
+    }
+
+    @PostPersist
+    void campaignPostPersist() {
+        System.out.println("Реклама " + name + " добавлена");
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -53,8 +57,6 @@ public class Campaign implements Serializable {
                 ", name='" + name + '\'' +
                 ", about='" + about + '\'' +
                 ", price=" + price +
-                ", startdate=" + startdate +
-                ", enddate=" + enddate +
                 '}';
     }
 
@@ -93,22 +95,6 @@ public class Campaign implements Serializable {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public Date getStartdate() {
-        return startdate;
-    }
-
-    public void setStartdate(Date startdate) {
-        this.startdate = startdate;
-    }
-
-    public Date getEnddate() {
-        return enddate;
-    }
-
-    public void setEnddate(Date enddate) {
-        this.enddate = enddate;
     }
 
     public List<Advertising> getAdvertisings() {

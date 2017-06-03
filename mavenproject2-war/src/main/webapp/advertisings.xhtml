@@ -8,6 +8,7 @@
     <title>Facelet Title</title>
 </h:head>
 <h:body>
+    <h:outputLabel value="Реклама"/>
     <h:form>
         <h:dataTable value="#{AdvertisingBean.allAdvertisings}" var="adv">
             <h:column>
@@ -39,17 +40,20 @@
             </h:column>
             <h:column>
                 <div align="center">
-                    <h:form>
-                        <h:commandButton action="#{AdvertisingBean.deleteAdvertisingById(adv.id)}" value="Удалить"/>
+                        <h:commandButton action="#{AdvertisingBean.deleteAdvertisingById(adv.id)}" value="Удалить"/> |
                         <h:commandButton action="#{OrderBean.getOrdersByAdvertisingIdRedirect(adv.id)}"
-                                         value="Показать заказы"/>
-                    </h:form>
+                                         value="Показать заказы"/> |
+                        <h:commandButton action="#{OrderBean.addOrder(adv)}"
+                                         value="Заказать"/>
                 </div>
             </h:column>
         </h:dataTable>
-        <h:form>
-            <h:commandButton action="addAdvertising" value="Добавить рекламу"/>
-        </h:form>
+
+    </h:form>
+    <h:form>
+        <h:commandButton action="addCampaign" value="Добавить акцию"/> |
+        <h:commandButton action="addAdvertising" value="Добавить рекламу"/> |
+        <h:commandButton action="orders" value="Все заказы"/>
     </h:form>
 </h:body>
 </html>

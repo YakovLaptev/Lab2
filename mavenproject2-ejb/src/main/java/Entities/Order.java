@@ -10,23 +10,17 @@ import java.util.Date;
  * Created by Yakov
  */
 @Entity
-@Table(name = "Order",schema = "advag")
+@Table(name = "Order", schema = "advag")
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @NotNull
     private Integer number;
-    @Basic
-    @NotNull
-    @Temporal(TemporalType.DATE)
-    private Date createddate;
-    @Null
     @JoinColumn(name = "advertising_id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Advertising advertising;
 
     public Long getId() {
@@ -35,6 +29,26 @@ public class Order implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @PrePersist
+    void orderPrePersist() {
+        System.out.println("Производится добавление заказа номер " + number);
+    }
+
+    @PostPersist
+    void orderPostPersist() {
+        System.out.println("Заказ номер " + number + " добавлен");
+    }
+
+    @PreRemove
+    void orderPreRemove() {
+        System.out.println("Производится ужадение заказа номер " + number);
+    }
+
+    @PostRemove
+    void orderPostRemove() {
+        System.out.println("Заказ номер " + number + " удален");
     }
 
     @Override
@@ -55,11 +69,9 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return "Order{" +
-
                 "id=" + id +
                 ", number=" + number +
                 ", advertising=" + advertising +
-                ", createddate=" + createddate +
                 '}';
     }
 
@@ -79,11 +91,4 @@ public class Order implements Serializable {
         this.advertising = advertising;
     }
 
-    public Date getCreateddate() {
-        return createddate;
-    }
-
-    public void setCreateddate(Date createddate) {
-        this.createddate = createddate;
-    }
 }

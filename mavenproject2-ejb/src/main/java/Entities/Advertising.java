@@ -3,14 +3,13 @@ package Entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.List;
 
 /**
- *
  * @author Yakov
  */
+
 @Entity
 @Table(name = "Advertising", schema = "advag")
 public class Advertising implements Serializable {
@@ -32,13 +31,23 @@ public class Advertising implements Serializable {
     private String briefDescription;
     @Size(min = 1, max = 100)
     private String fullDescription;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "advertising")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "advertising", fetch = FetchType.LAZY)
     private List<Order> ordersList;
-    @ManyToMany(cascade=CascadeType.MERGE,fetch = FetchType.EAGER)
-    @JoinTable(name="advertising_campaign",
-            joinColumns = @JoinColumn(name="advertising_id"),
-            inverseJoinColumns = @JoinColumn(name="campaign_id"))
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name = "advertising_campaign",
+            joinColumns = @JoinColumn(name = "advertising_id"),
+            inverseJoinColumns = @JoinColumn(name = "campaign_id"))
     private List<Campaign> campaigns;
+
+    @PrePersist
+    void advertisingPrePersist() {
+        System.out.println("Производится добавление рекламы " + name);
+    }
+
+    @PostPersist
+    void advertisingPostPersist() {
+        System.out.println("Реклама " + name + " добавлена");
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -67,7 +76,7 @@ public class Advertising implements Serializable {
                 ", ordersList=" + ordersList +
                 '}';
     }
-    @XmlTransient
+
     public List<Order> getOrdersList() {
         return ordersList;
     }

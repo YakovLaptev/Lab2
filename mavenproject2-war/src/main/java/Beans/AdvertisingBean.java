@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Yakov
  */
 @ManagedBean(value = "AdvertisingBean")
@@ -36,7 +35,7 @@ public class AdvertisingBean implements Serializable {
         advDao.addAdvertising(advertising);
         return "advertisings";
     }
-    
+
     public List<Advertising> getAllAdvertisings() {
         return advDao.getAllAdvertisings();
     }

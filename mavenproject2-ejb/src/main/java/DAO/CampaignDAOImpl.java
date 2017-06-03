@@ -41,8 +41,8 @@ public class CampaignDAOImpl implements CampaignDAO, Serializable {
     @Override
     public List<Campaign> getAllCampaigns() {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        CriteriaQuery<Campaign> selectAllQuery = criteriaBuilder.createQuery(Campaign.class); // ??
-        Root<Campaign> root = selectAllQuery.from(Campaign.class); // ??
+        CriteriaQuery<Campaign> selectAllQuery = criteriaBuilder.createQuery(Campaign.class);
+        Root<Campaign> root = selectAllQuery.from(Campaign.class);
         selectAllQuery.select(root);
         TypedQuery<Campaign> selectAllCampaignQuery = em.createQuery(selectAllQuery);
         return selectAllCampaignQuery.getResultList();
