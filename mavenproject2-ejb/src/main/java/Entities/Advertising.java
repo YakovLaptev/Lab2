@@ -17,7 +17,7 @@ public class Advertising implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -34,10 +34,10 @@ public class Advertising implements Serializable {
     private String fullDescription;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "advertising")
     private List<Order> ordersList;
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinTable(name="advertising_campaign",
-            joinColumns = @JoinColumn(name="iadvertising_id"),
-            inverseJoinColumns = @JoinColumn(name="icampaign_id"))
+            joinColumns = @JoinColumn(name="advertising_id"),
+            inverseJoinColumns = @JoinColumn(name="campaign_id"))
     private List<Campaign> campaigns;
 
     @Override
@@ -124,4 +124,11 @@ public class Advertising implements Serializable {
         this.fullDescription = fullDescription;
     }
 
+    public List<Campaign> getCampaigns() {
+        return campaigns;
+    }
+
+    public void setCampaigns(List<Campaign> campaigns) {
+        this.campaigns = campaigns;
+    }
 }

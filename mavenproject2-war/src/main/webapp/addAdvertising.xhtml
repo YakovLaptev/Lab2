@@ -3,9 +3,23 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="Hello, world"/>
+    <h:form>
+        Название: <h:inputText value="#{AdvertisingBean.advertising.name}" id="name"/><br/>
+        Категория: <h:inputText value="#{AdvertisingBean.advertising.category}" id="category"/><br/>
+        Цена: <h:inputText value="#{AdvertisingBean.advertising.price}" id="price"/><br/>
+        Краткое описание: <h:inputText value="#{AdvertisingBean.advertising.briefDescription}" id="briefDescription"/><br/>
+        Полное описание: <h:inputText value="#{AdvertisingBean.advertising.fullDescription}" id="fullDescription"/><br/>
+        Реклама:
+        <!--<h:selectOneMenu  value="#{AdvertisingBean.advertising.campaigns}">-->
+            <!--<f:selectItems value="#{CampaignBean.allCampaigns}" var="camp" itemValue="#{camp}" itemLabel="#{camp.name}"/>-->
+        <!--</h:selectOneMenu>-->
+        <h:selectManyMenu value="#{AdvertisingBean.selectedCampaigns}" style="height: 50px">
+            <f:selectItems value="#{CampaignBean.allCampaigns}" var="camp" itemValue="#{camp.id}" itemLabel="#{camp.name}"/>
+        </h:selectManyMenu>
+        <br/>
+        <h:commandButton value="Добавить ректаму" action="#{AdvertisingBean.addAdvertising}"/>
+    </h:form>
 </f:view>
 </html>

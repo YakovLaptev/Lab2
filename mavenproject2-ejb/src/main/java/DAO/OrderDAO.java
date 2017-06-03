@@ -15,4 +15,5 @@ public interface OrderDAO {
     void deleteOrder(Long id);
     Order getById(Long id);
     List<Order> getAllOrders();
+    List<Order> getOrdersByAdvertisingId(Long id);
 }

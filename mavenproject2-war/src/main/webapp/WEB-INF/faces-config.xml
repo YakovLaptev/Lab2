@@ -8,6 +8,16 @@
         <managed-bean-class>Beans.AdvertisingBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>CampaignBean</managed-bean-name>
+        <managed-bean-class>Beans.CampaignBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>OrderBean</managed-bean-name>
+        <managed-bean-class>Beans.OrderBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
     <application>
         <resource-bundle>
             <base-name>/Bundle</base-name>

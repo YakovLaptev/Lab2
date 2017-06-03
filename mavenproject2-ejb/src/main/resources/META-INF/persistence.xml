@@ -6,6 +6,7 @@
         <jta-data-source>jdbc/advag</jta-data-source>
         <class>Entities.Advertising</class>
         <class>Entities.Order</class>
+        <class>Entities.Campaign</class>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>

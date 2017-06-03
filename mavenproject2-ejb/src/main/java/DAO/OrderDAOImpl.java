@@ -5,6 +5,7 @@ import Entities.Order;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -46,5 +47,12 @@ public class OrderDAOImpl implements OrderDAO, Serializable {
         selectAllQuery.select(root);
         TypedQuery<Order> selectAllOrderQuery = em.createQuery(selectAllQuery);
         return selectAllOrderQuery.getResultList();
+    }
+
+    @Override
+    public List<Order> getOrdersByAdvertisingId(Long id) {
+        Query query = em.createQuery("Select o FROM Order o JOIN o.advertising adv WHERE adv.id=?1", Order.class);
+        query.setParameter(1, id);
+        return (List<Order>) query.getResultList();
     }
 }

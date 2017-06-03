@@ -41,8 +41,8 @@ public class AdvertisingDAOImpl implements AdvertisingDAO, Serializable {
     @Override
     public List<Advertising> getAllAdvertisings() {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        CriteriaQuery<Advertising> selectAllQuery = criteriaBuilder.createQuery(Advertising.class); // ??
-        Root<Advertising> root = selectAllQuery.from(Advertising.class); // ??
+        CriteriaQuery<Advertising> selectAllQuery = criteriaBuilder.createQuery(Advertising.class);
+        Root<Advertising> root = selectAllQuery.from(Advertising.class);
         selectAllQuery.select(root);
         TypedQuery<Advertising> selectAllAdvertisingQuery = em.createQuery(selectAllQuery);
         return selectAllAdvertisingQuery.getResultList();

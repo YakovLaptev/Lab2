@@ -38,15 +38,18 @@
                 </div>
             </h:column>
             <h:column>
-                <f:facet name="header"></f:facet>
                 <div align="center">
                     <h:form>
                         <h:commandButton action="#{AdvertisingBean.deleteAdvertisingById(adv.id)}" value="Удалить"/>
+                        <h:commandButton action="#{OrderBean.getOrdersByAdvertisingIdRedirect(adv.id)}"
+                                         value="Показать заказы"/>
                     </h:form>
                 </div>
             </h:column>
         </h:dataTable>
-        <h:commandButton action="addAdvertising" value="Добавить рекламу"/>
+        <h:form>
+            <h:commandButton action="addAdvertising" value="Добавить рекламу"/>
+        </h:form>
     </h:form>
 </h:body>
 </html>
